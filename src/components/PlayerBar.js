@@ -5,15 +5,15 @@ class PlayerBar extends Component {
     return (
       <section className="player-bar">
         <section id="buttons">
-            <button id="previous" onClick={this.props.handlePrevClick}>
-              <span><ion-icon name="skip-backward"></ion-icon></span> 
-           </button>
-           <button id="play-pause" onClick={this.props.handleSongClick} >
-              <span className={this.props.isPlaying ? 'ion-pause' : "ion-md-play"}></span>
-           </button>
-           <button id="next" onClick={this.props.handleNextClick} >
-              <span className="icon ion-md-skip-forward"></span>
-            </button>
+          <button id="previous" onClick={this.props.handlePrevClick}>
+            <span><ion-icon name="skip-backward"></ion-icon></span> 
+          </button>
+          <button id="play-pause" onClick={this.props.handleSongClick} >
+            <span className={this.props.isPlaying ? 'ion-pause' : "ion-md-play"}></span>
+          </button>
+          <button id="next" onClick={this.props.handleNextClick} >
+            <span className="icon ion-md-skip-forward"></span>
+          </button>
          </section>
          <section id="time-control">
             <div className="current-time">{this.props.currentTime}</div>
@@ -26,7 +26,6 @@ class PlayerBar extends Component {
              step="0.01"
              onChange={this.props.handleTimeChange} 
            />   
-           <div className="total-time">{this.props.duration}</div> 
         </section>
         <section id="volume-control">
           <div><ion-icon name="volume-low"></ion-icon></div>

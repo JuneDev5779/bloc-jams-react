@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
-import albums from './../data/albums';
 import PlayerBar from './PlayerBar';
 
 
@@ -66,7 +65,9 @@ class Album extends Component {
     if (this.state.isPlaying && isSameSong) {
       this.pause();
     } else {
-      if (!isSameSong) { this.setSong(song); }
+      if (!isSameSong) { 
+        this.setSong(song); 
+      }
       this.play();
     }
   }
@@ -75,6 +76,12 @@ class Album extends Component {
     const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
     const newIndex = Math.max(0, currentIndex - 1);
     const newSong = this.state.album.songs[newIndex];
+    if (!this.state.isPlaying) {
+      return null;
+    }
+    if (!currentIndex) {
+      return null;
+  }
     this.setSong(newSong);
     this.play();
   }
@@ -83,12 +90,12 @@ class Album extends Component {
     const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
     const nextIndex = Math.min(this.state.album.songs.length, currentIndex + 1);
     const newSong = this.state.album.songs[nextIndex];
-      if (!this.state.isPlaying) {
-        return null;
-    }
-      if (!newSong) {
-        return null;
-    }
+    if (!this.state.isPlaying) {
+      return null;
+  }
+    if (!newSong) {
+      return null;
+  }
     this.setSong(newSong);
     this.play();
 
