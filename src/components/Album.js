@@ -152,7 +152,7 @@ class Album extends Component {
                     <td className="song-number">{index+1}</td>
                     <td><ion-icon name="ios-radio"></ion-icon></td>
                     <td className="song-title-row">{song.title}</td>
-                    <td className="song-duration-row">{song.duration}</td>
+                    <td className="song-duration-row">{this.formatTime(song.duration)}</td>
                   </tr>
                 )
               } 
