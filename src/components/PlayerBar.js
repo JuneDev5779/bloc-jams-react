@@ -27,6 +27,7 @@ class PlayerBar extends Component {
              onChange={this.props.handleTimeChange} 
            />   
         </section>
+        <div className="total-time">{this.props.formatTime(this.props.duration)}</div>
         <section id="volume-control">
           <div><ion-icon name="volume-low"></ion-icon></div>
           <input
