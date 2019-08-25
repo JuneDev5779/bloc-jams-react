@@ -126,6 +126,36 @@ class Album extends Component {
     this.setState({ currentVolume: newVolume });
   }
 
+  hoverOn(index) {
+    console.log("hovering button")
+
+    this.setState({ hover: index })
+  }
+
+  hoverOff() {
+    this.setState({ hover: false })
+  }
+
+  onMouseEnter(song) {
+    this.setState({ hoveredSong: song });
+  }
+
+  onMouseLeave(song) {
+    this.setState({ hoveredSong: null });
+  }
+
+  showIcon(song, index) {
+    if(this.state.currentSong === song && this.state.isPlaying === true) {
+      return <span className="icon ion-md-pause"></span>
+    } else if (this.state.hoveredSong === song){
+        return <span className="icon ion-md-play"></span>
+    }
+      else {
+        return <span>{index + 1}</span>
+      }
+  };
+
+
   render() {
     return (
       <section className="album">
@@ -144,12 +174,10 @@ class Album extends Component {
              <col id="song-duration-column" />
            </colgroup>
             <tbody>
-              {
-                this.state.album.songs.map( (song, index) =>
-                  <tr className="song" key={index} onClick={() => this.handleSongClick(song)}
-                    onMouseEnter={() => this.setState({currentlyHovered: index+1})}
-                    onMouseLeave={() => this.setState({currentlyHovered: false})} >
-                    <td className="song-number">{index+1}</td>
+              {this.state.album.songs.map( (song, index) =>
+                 <tr className="song" key={index} onClick={ () => this.handleSongClick(song) }
+                    onMouseEnter={ () => this.onMouseEnter(song) } onMouseLeave={ () => this.onMouseLeave(null) } >
+                    { this.showIcon(song, index) }
                     <td><ion-icon name="ios-radio"></ion-icon></td>
                     <td className="song-title-row">{song.title}</td>
                     <td className="song-duration-row">{this.formatTime(song.duration)}</td>
